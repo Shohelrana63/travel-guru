@@ -1,0 +1,8 @@
+.home-background{
+    background:url('../../images/Image/Rectangle\ 1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 800px;
+    position:relative;
+    
+}

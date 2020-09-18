@@ -1,0 +1,30 @@
+.titleStyle{
+    font-size: 70px;
+    color: white;
+}
+.booking-form{
+    color: black;
+    text-align: left;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+}
+.booking-form-group input{
+    height: 40px;
+   border: 1px solid gray;
+   border-radius: 5px;
+   margin-bottom: 15px;
+
+}
+.booking-form-group input[type="submit"]{
+    background: orange;
+   margin-top: 15px;
+ 
+}
+.booking-form-group label{
+    color: grey;
+    margin-bottom: 15px ;
+    font-size: 20px;
+    font-weight: 500;
+
+}
