@@ -1,6 +1,7 @@
 import { FormGroup, Grid } from '@material-ui/core';
 import React from 'react';
 import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
 import Header from '../Header/Header';
 import './BookingArea.css';
@@ -16,8 +17,16 @@ const backgroundStyle = {
 
 }
 const BookingArea = (props) => {
+    const history = useHistory();
    
     const[showPlaceArea] = useContext(UserContext);
+    
+    const formController = (e) =>{
+        e.preventDefault();
+        history.push("/booking")
+
+    }
+    
     return (
         <div style={backgroundStyle}>
          <Header></Header>
@@ -29,7 +38,7 @@ const BookingArea = (props) => {
 
                 <Grid item md={6} style={{ padding: "90px"}}>
                      <h1>this is boking area</h1>
-                     <form className="booking-form">
+                     <form className="booking-form" onSubmit={formController}>
                        <FormGroup className="booking-form-group">
                            <label>Origin</label>
                            <input type="text" required/>

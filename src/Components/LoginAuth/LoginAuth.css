@@ -1,0 +1,33 @@
+.account-form{
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 500px;
+    margin: auto;
+    margin-top: 30px;
+    padding: 10px 20px;
+    text-align: center;
+    
+}
+p{
+    text-align: center;
+}
+.fb-google-form{
+    margin: auto;
+    width: 300px;
+}
+.facebook{
+ display: flex;
+ border: 1px solid grey;
+ border-radius: 25px;
+ padding: 1px 15px;
+ margin-right:5px;
+ align-items: center;
+}
+.google{
+    display: flex;
+    border: 1px solid grey;
+    border-radius: 25px;
+    padding: 1px 15px;
+    margin-right:5px;
+    align-items: center;
+}

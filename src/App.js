@@ -7,9 +7,17 @@ import {
   Link
 } from "react-router-dom";
 import './App.css';
+// import AllHotels from './Components/AllHotels/AllHotels';
+
 import BookingArea from './Components/BookingArea/BookingArea';
 
 import Home from './Components/Home/Home';
+import Hotels from './Components/Hotels/Hotels';
+import LoginAuth from './Components/LoginAuth/LoginAuth';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
+// import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
+
+
 
 
 export const UserContext = createContext()
@@ -22,8 +30,9 @@ function App() {
     img:"https://i.ibb.co/K5HvNLV/Rectangle-1.png"
   })
 
+  const [loggedIn, setLoggedIn] = useState(true)
   return (
-    <UserContext.Provider value = {[placeArea, setPlaceArea]}>
+    <UserContext.Provider value = {[placeArea, setPlaceArea,loggedIn, setLoggedIn]}>
          <Router>
              <Switch>
                <Route exact path="/">
@@ -34,6 +43,13 @@ function App() {
                   <BookingArea></BookingArea>
                 </Route>
                
+                <Route  path="/LoginAuth">
+                  <LoginAuth></LoginAuth>
+                </Route>
+
+                <PrivateRoute  path="/booking">
+                 <Hotels></Hotels>
+                </PrivateRoute>
                
    
              </Switch>
