@@ -1,0 +1,13 @@
+
+
+.hotel-view span{
+    font-size: 15px;
+    color: gray;
+    font-weight: 500;
+    margin-right: 5px;
+}
+.hotel-review-section span{
+    font-size: 15px;
+    font-weight: 500;
+    margin-right: 15px;
+}

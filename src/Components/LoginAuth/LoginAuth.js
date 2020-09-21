@@ -46,7 +46,6 @@ const LoginAuth = () => {
                         setUser({ ...user, signupError: err.message })
                     })
                 : setConfirmationError(true)
-
         }
 
       
@@ -97,9 +96,7 @@ const LoginAuth = () => {
 
             <form className="form-group account-form" onSubmit={formHandler}>
                 <FormGroup>
-                    {/* <h3>Create an Account</h3>
-                    <input type="text" placeholder="First Name"/>
-                    <input type="text" placeholder="Last Name"/> */}
+                   
                     {
                         isSignUp ? <h2>Login</h2>
                             : <h2>Create an account</h2>
@@ -115,12 +112,9 @@ const LoginAuth = () => {
                         </>
                     }
 
-                   
-
-
+                
                     <input onBlur={(event) => setUser({ ...user, email: event.target.value })} type="email" placeholder="Email address" required />
                     <input onBlur={(event) => setUser({ ...user, password: event.target.value })} type="password" placeholder="Password" required />
-
 
 
                     {
@@ -186,7 +180,8 @@ const LoginAuth = () => {
                     <img style={{ width: "35px", height: "35px" , marginRight: "25px"}} src={facebookLogo} alt="" />
                     <p>Continue with Facebook</p>
                 </div>
-<br/>
+                        <br/>
+                        
                 <div onClick={googleSigninHandler} style={{cursor:"pointer"}} className="google">
                     <img style={{ width: "30px", height: "30px", marginRight: "25px"}} src={googleLogo} alt="" />
                     <p>Continue with Google</p>

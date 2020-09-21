@@ -7,20 +7,19 @@ import { hotelsInfo } from '../../fakeData/fakePlaces';
 const Hotels = () => {
     return (
         <div>
-           <h1>this is hotel page</h1> 
+           
            <Header ></Header>
 
            <Grid container item xs={12} justify="space-between">
 
-               <Grid item xs={12} md={6}>
+               <Grid item xs={12} md={7}>
                 {
-                   
                     hotelsInfo.map(hotel=> <HotelDetails hotel={hotel}></HotelDetails> )
                 }
                </Grid>
 
-               <Grid item xs={12} md={6}>
-                a
+               <Grid item xs={12} md={5}>
+                map 
                </Grid>
            </Grid>
         </div>

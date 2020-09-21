@@ -27,38 +27,38 @@ export default places;
 export const hotelsInfo=[
     {
         id:0,
-        title:"Light bright airy stylish apt and safe peaceful stay",
-        star:4.9,
-        reviewed:20,
+        title:"Light bright airy stylish apt & safe peaceful stay",
         guest:4,
         bedroom:2,
+        star:4.9,
         bed:2,
         bath:2,
-        price:59,
+        reviewed:20,
+        price:34,
         img:"https://i.ibb.co/mhNcdjX/Rectangle-26.png"
     },
     {
         id:1,
         title:"Apartment in Lost Panorama",
-        star:4.9,
-        reviewed:20,
         guest:4,
         bedroom:2,
+        star:4.8,
         bed:2,
         bath:2,
-        price:98,
+        reviewed:10,
+        price:52,
         img:"https://i.ibb.co/MGq0S89/Rectangle-27.png"
     },
     {
         id:2,
-        title:"AR Lounge and pool (r&r b&b)",
-        star:4.9,
-        reviewed:20,
+        title:"AR Lounge & pool(r&r + b&b)",
         guest:4,
         bedroom:2,
+        star:4.9,
         bed:2,
         bath:2,
-        price:112,
+        reviewed:25,
+        price:44,
         img:"https://i.ibb.co/7GjTXgc/Rectangle-28.png"
     }
 
