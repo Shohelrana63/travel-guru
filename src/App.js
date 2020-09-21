@@ -30,7 +30,7 @@ function App() {
     img:"https://i.ibb.co/K5HvNLV/Rectangle-1.png"
   })
 
-  const [loggedIn, setLoggedIn] = useState(true)
+  const [loggedIn, setLoggedIn] = useState(false)
   return (
     <UserContext.Provider value = {[placeArea, setPlaceArea,loggedIn, setLoggedIn]}>
          <Router>

@@ -8,12 +8,17 @@
     text-align: center;
     
 }
+.account-form input{
+    padding-left: 10px;
+    margin: 5px;
+}
 p{
     text-align: center;
 }
 .fb-google-form{
     margin: auto;
     width: 300px;
+    padding: 5px;
 }
 .facebook{
  display: flex;
@@ -22,6 +27,7 @@ p{
  padding: 1px 15px;
  margin-right:5px;
  align-items: center;
+ 
 }
 .google{
     display: flex;

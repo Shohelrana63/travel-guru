@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Redirect, Route, useLocation } from 'react-router-dom';
+import { UserContext } from '../../App';
 
 const PrivateRoute = ({children, ...rest}) => {
 
-    const loggedIn = localStorage.getItem("loggedIn")
-    // const[placeArea, setPlaceArea,loggedIn, setLoggedIn] = useContext(UserContext);
-    const location = useLocation()
+
+    const[placeArea, setPlaceArea,loggedIn, setLoggedIn] = useContext(UserContext);
     return (
         <Route
            {...rest}
-             render={()=>
+           render={({ location })=>
                 loggedIn ? (
                     children
                     ) : (

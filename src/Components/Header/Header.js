@@ -1,9 +1,11 @@
 import React from 'react';
+
 import logo from '../../images/Logo.png';
 import Button from '@material-ui/core/Button';
 
-const Header = () => {
 
+const Header = (props) => {
+   
     return (
        
         <div style={{display:"flex", alignItems:"center", justifyContent:"space-around", padding:"8px", color:"white"}}>
@@ -15,6 +17,7 @@ const Header = () => {
                 <a href="/destination"><b>Destination</b></a> 
                 <a href="/blog"> <b>Blog</b></a> 
                 <a href="/contact"> <b>Contact</b></a> 
+                 
 
                 <Button size="small" style={{background:"orange"}}>Login</Button>
         </div>
