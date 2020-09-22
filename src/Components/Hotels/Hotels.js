@@ -4,6 +4,7 @@ import { Grid } from '@material-ui/core';
 
 import HotelDetails from '../HotelDetails/HotelDetails';
 import { hotelsInfo } from '../../fakeData/fakePlaces';
+import Map from '../Map/Map';
 const Hotels = () => {
     return (
         <div>
@@ -19,7 +20,7 @@ const Hotels = () => {
                </Grid>
 
                <Grid item xs={12} md={5}>
-                map 
+                 <Map></Map>
                </Grid>
            </Grid>
         </div>
