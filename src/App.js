@@ -7,20 +7,18 @@ import {
   Link
 } from "react-router-dom";
 import './App.css';
-// import AllHotels from './Components/AllHotels/AllHotels';
-
 import BookingArea from './Components/BookingArea/BookingArea';
-
 import Home from './Components/Home/Home';
 import Hotels from './Components/Hotels/Hotels';
 import LoginAuth from './Components/LoginAuth/LoginAuth';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
-// import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
+
 
 
 
 
 export const UserContext = createContext()
+
 function App() {
 
   const[placeArea, setPlaceArea] = useState({
@@ -31,6 +29,8 @@ function App() {
   })
 
   const [loggedIn, setLoggedIn] = useState(false)
+ 
+ 
   return (
     <UserContext.Provider value = {[placeArea, setPlaceArea,loggedIn, setLoggedIn]}>
          <Router>

@@ -28,3 +28,18 @@
     font-weight: 500;
 
 }
+.datePicker-section p{
+    color: grey;
+    font-size: 20px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+.datePicker-input{
+
+background-image: url("https://i.ibb.co/s5m2x3G/calender-icon.png");
+
+background-repeat: no-repeat;
+background-size: 20px;
+background-position:  120px;
+cursor: pointer;
+}

@@ -1,6 +1,9 @@
 import { FormGroup, Grid } from '@material-ui/core';
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
 import Header from '../Header/Header';
@@ -20,6 +23,8 @@ const BookingArea = (props) => {
     const history = useHistory();
    
     const[showPlaceArea] = useContext(UserContext);
+    const [from,setFrom]=useState(null)
+    const [to,setTo]=useState(null)
     
     const formController = (e) =>{
         e.preventDefault();
@@ -46,7 +51,22 @@ const BookingArea = (props) => {
                            <label>Destination</label>
                            <input type="text" required/>
 
+                           <div style={{display:"flex"}} className="datePicker-section">
+
+                               <div style={{marginRight:"5px"}}>
+                                   <p>From</p>
+                                   <DatePicker  selected={from} className="datePicker-input" onChange={date => setFrom(date)} placeholderText="00/00/00" required/>
+                              </div>
+
+                               <div>
+                                   <p>To</p>
+                                   <DatePicker selected={to} className="datePicker-input" onChange={date => setTo(date)} placeholderText="00/00/00" required/>
+                               </div>
+                               
+                           </div>
+
                            <input type="submit" value="Start Booking"/>
+
                        </FormGroup>
                      </form>
                 </Grid>

@@ -15,11 +15,11 @@ firebase.initializeApp(firebaseConfig);
 
 const LoginAuth = () => {
     const [placeArea, setPlaceArea, loggedIn, setLoggedIn] = useContext(UserContext);
-    const [submit, setSubmit] = useState("")
+     const [submit, setSubmit] = useState("")
     const [user, setUser] = useState({})
     const [isSignUp, setIsSignUp] = useState(false)
     const [confirmationError, setConfirmationError] = useState(false)
-
+    
 
     const location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
@@ -28,7 +28,7 @@ const LoginAuth = () => {
 
     const formHandler = (e) => {
         e.preventDefault()
-             console.log(submit,'submit');
+        console.log(submit, 'submit');
         if (submit === "signup") {
             console.log('call');
             user.password === user.confirmationPassword ?
@@ -49,18 +49,18 @@ const LoginAuth = () => {
         }
 
       
-        submit === "signin" &&
+       submit === "signin" &&
             console.log('call');
         firebase.auth().signInWithEmailAndPassword(user.email, user.password)
             .then(res => {
-                console.log(res,'signin');
+
                 const currentUser = firebase.auth().currentUser;
-                // setName(currentUser.displayName)
+                // setName(currentUser.displayName
                 setLoggedIn(true)
                 history.replace(from || "/")
             })
             .catch(err => {
-            console.log(err);
+                console.log(err);
                 setUser({ ...user, signinError: err.message })
             })
 
@@ -89,14 +89,14 @@ const LoginAuth = () => {
                 console.log(err)
             })
     }
-   
+
     return (
         <div>
             <Header></Header>
 
             <form className="form-group account-form" onSubmit={formHandler}>
                 <FormGroup>
-                   
+
                     {
                         isSignUp ? <h2>Login</h2>
                             : <h2>Create an account</h2>
@@ -112,7 +112,7 @@ const LoginAuth = () => {
                         </>
                     }
 
-                
+
                     <input onBlur={(event) => setUser({ ...user, email: event.target.value })} type="email" placeholder="Email address" required />
                     <input onBlur={(event) => setUser({ ...user, password: event.target.value })} type="password" placeholder="Password" required />
 
@@ -124,16 +124,16 @@ const LoginAuth = () => {
 
                     }
                     {
-                        isSignUp && 
-                            <div style={{display:"flex", justifyContent:"space-between", fontSize:"13px", fontWeight:"500"}}>
-                                <div style={{display:"flex", alignItems:"center"}}>     
-                                    <input id="checkbox" type="Checkbox" />
-                                    <label  style={{marginBottom:"6px"}}>
-                                        Remember me
+                        isSignUp &&
+                        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", fontWeight: "500" }}>
+                            <div style={{ display: "flex", alignItems: "center" }}>
+                                <input id="checkbox" type="Checkbox" />
+                                <label style={{ marginBottom: "6px" }}>
+                                    Remember me
                                     </label>
-                                </div>
-                                <p style={{color:"orange", cursor:"pointer"}}>Fogot Password</p>
                             </div>
+                            <p style={{ color: "orange", cursor: "pointer" }}>Fogot Password</p>
+                        </div>
                     }
                     {
                         user.signupError ?
@@ -151,8 +151,8 @@ const LoginAuth = () => {
                     }
                     {
 
-                        isSignUp ? <input name="signin" style={{ cursor: "pointer", backgroundColor:"orange" }} onClick={(event) => setSubmit(event.target.name)} type="submit" value="Sign in" />
-                            : <input name="signup" style={{ cursor: "pointer", backgroundColor:"orange" }} onClick={(event) => setSubmit(event.target.name)} type="submit" value="Sign up" />
+                        isSignUp ? <input name="signin" style={{ cursor: "pointer", backgroundColor: "orange" }} onClick={(event) => setSubmit(event.target.name)} type="submit" value="Sign in" />
+                            : <input name="signup" style={{ cursor: "pointer", backgroundColor: "orange" }} onClick={(event) => setSubmit(event.target.name)} type="submit" value="Sign up" />
                     }
                 </FormGroup>
 
@@ -167,23 +167,23 @@ const LoginAuth = () => {
                             <span>Already have an account? </span>
                             <span onClick={() => setIsSignUp(true)} style={{ color: "orange", cursor: "pointer" }}>Login</span>
                         </>
-                   
+
 
                 }
 
             </form>
 
 
-            <div  className="fb-google-form">
+            <div className="fb-google-form">
                 <p>  Or</p>
-                <div onClick={fbSigninHandler} style={{cursor:"pointer"}} className="facebook">
-                    <img style={{ width: "35px", height: "35px" , marginRight: "25px"}} src={facebookLogo} alt="" />
+                <div onClick={fbSigninHandler} style={{ cursor: "pointer" }} className="facebook">
+                    <img style={{ width: "35px", height: "35px", marginRight: "25px" }} src={facebookLogo} alt="" />
                     <p>Continue with Facebook</p>
                 </div>
-                        <br/>
-                        
-                <div onClick={googleSigninHandler} style={{cursor:"pointer"}} className="google">
-                    <img style={{ width: "30px", height: "30px", marginRight: "25px"}} src={googleLogo} alt="" />
+                <br />
+
+                <div onClick={googleSigninHandler} style={{ cursor: "pointer" }} className="google">
+                    <img style={{ width: "30px", height: "30px", marginRight: "25px" }} src={googleLogo} alt="" />
                     <p>Continue with Google</p>
                 </div>
             </div>
