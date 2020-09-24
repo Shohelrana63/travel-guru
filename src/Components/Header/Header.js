@@ -26,10 +26,10 @@ const Header = (props) => {
 
       <input className="input-style" style={{ height: "30px", width: "300px", borderRadius: "3px" }} type="text" placeholder="search your destination" />
 
-      <Link to="/news"><b>News</b></Link>
-      <Link to="/destination"><b>Destination</b></Link>
-      <Link to="/blog"><b>Blog</b></Link>
-      <Link to="/contact"> <b>Contact</b></Link>
+      <Link to="/news">News</Link>
+      <Link to="/destination">Destination</Link>
+      <Link to="/blog">Blog</Link>
+      <Link to="/contact"> Contact</Link>
 
       {
         loggedIn ?

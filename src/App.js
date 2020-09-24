@@ -2,10 +2,15 @@ import React, { createContext } from "react";
 import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
+import Blog from "./Components/Blog/Blog";
 import BookingArea from "./Components/BookingArea/BookingArea";
+import Contact from "./Components/Contact/Contact";
+import Destination from "./Components/Destination/Destination";
 import Home from "./Components/Home/Home";
 import Hotels from "./Components/Hotels/Hotels";
 import LoginAuth from "./Components/LoginAuth/LoginAuth";
+import News from "./Components/News/News";
+import NotFound from "./Components/NotFound/NotFound";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 
 export const UserContext = createContext();
@@ -20,21 +25,12 @@ function App() {
   });
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [lgUserName, setLgUserName] = useState();
+  const [logUpdateUserName, setLogUpdateUserName] = useState();
 
-  console.log("app js theke", lgUserName);
+  console.log("app js theke", logUpdateUserName);
 
   return (
-    <UserContext.Provider
-      value={[
-        placeArea,
-        setPlaceArea,
-        loggedIn,
-        setLoggedIn,
-        lgUserName,
-        setLgUserName,
-      ]}
-    >
+    <UserContext.Provider value={[placeArea, setPlaceArea, loggedIn, setLoggedIn, logUpdateUserName, setLogUpdateUserName]}>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -52,6 +48,27 @@ function App() {
           <PrivateRoute path="/booking">
             <Hotels></Hotels>
           </PrivateRoute>
+
+          <Route path="/news">
+            <News></News>
+          </Route>
+
+          <Route path="/blog">
+            <Blog></Blog>
+          </Route>
+
+          <Route path="/contact">
+            <Contact></Contact>
+          </Route>
+
+          <Route path="/destination">
+            <Destination></Destination>
+          </Route>
+
+          <Route path="*">
+            <NotFound></NotFound>
+          </Route>
+
         </Switch>
       </Router>
     </UserContext.Provider>
