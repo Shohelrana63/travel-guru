@@ -1,194 +1,231 @@
-import { FormGroup } from '@material-ui/core';
-import React, { useContext } from 'react';
-import Header from '../Header/Header';
-import facebookLogo from '../../images/Icon/fb.png';
-import googleLogo from '../../images/Icon/google.png';
-import { useState } from 'react';
-import './LoginAuth.css';
+import { FormGroup } from "@material-ui/core";
+import React, { useContext } from "react";
+import Header from "../Header/Header";
+import facebookLogo from "../../images/Icon/fb.png";
+import googleLogo from "../../images/Icon/google.png";
+import { useState } from "react";
+import "./LoginAuth.css";
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import firebaseConfig from './firebase.config';
-import { UserContext } from '../../App';
-import { useHistory, useLocation } from 'react-router-dom';
+import firebaseConfig from "./firebase.config";
+import { UserContext } from "../../App";
+import { useHistory, useLocation } from "react-router-dom";
 
 firebase.initializeApp(firebaseConfig);
 
 const LoginAuth = () => {
-    const [placeArea, setPlaceArea, loggedIn, setLoggedIn] = useContext(UserContext);
-     const [submit, setSubmit] = useState("")
-    const [user, setUser] = useState({})
-    const [isSignUp, setIsSignUp] = useState(false)
-    const [confirmationError, setConfirmationError] = useState(false)
-    
+  const [placeArea, setPlaceArea, loggedIn, setLoggedIn, logUpdateUserName, setLogUpdateUserName] = useContext(UserContext);
+  console.log("setLoggedIn", logUpdateUserName);
 
-    const location = useLocation();
-    let { from } = location.state || { from: { pathname: "/" } };
+  const [submit, setSubmit] = useState("");
 
-    const history = useHistory()
+  const [user, setUser] = useState({});
+  // console.log("username update", user.lname)
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [confirmationError, setConfirmationError] = useState(false);
 
-    const formHandler = (e) => {
-        e.preventDefault()
-        console.log(submit, 'submit');
-        if (submit === "signup") {
-            console.log('call');
-            user.password === user.confirmationPassword ?
-                firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-                    .then(res => {
-                        console.log(res, 'asfsadf');
-                        setConfirmationError(false)
-                        setUser({ ...user, signupError: "" })
-                        setLoggedIn(true)
-                        history.replace(from)
-                    })
+  const history = useHistory();
 
-                    .catch(err => {
-                        console.log(err);
-                        setUser({ ...user, signupError: err.message })
-                    })
-                : setConfirmationError(true)
+  const location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
+
+  const formHandler = (e) => {
+    e.preventDefault();
+    console.log(submit, "submit");
+    if (submit === "signup") {
+      console.log("call");
+      user.password === user.confirmationPassword ?
+        firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+          .then((res) => {
+            console.log(res, "asfsadf");
+            setConfirmationError(false);
+            setUser({ ...user, signupError: "" });
+            // const newUser = res.user.displayName;
+            setLogUpdateUserName(user.lname);
+            updateName(user.lname);
+            setLoggedIn(true);
+            history.replace(from);
+          })
+
+          .catch((err) => {
+            console.log(err);
+            setUser({ ...user, signupError: err.message });
+          })
+        : setConfirmationError(true);
+    }
+
+    //update user profile
+    const updateName = (name) => {
+      var user = firebase.auth().currentUser;
+
+      user.updateProfile({
+        displayName: name,
+      })
+        .then(function () {
+          console.log("name update sucess");
+        })
+        .catch(function (error) {
+          // An error happened.
+        });
+    };
+
+    submit === "signin" &&
+      console.log("call");
+    firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+      .then((res) => {
+        const currentUser = firebase.auth().currentUser;
+        // setName(currentUser.displayName
+        //console.log(res, 'signin);
+        const newUser = res.user.displayName;
+        // const userName = [...lgUserName, newUser]
+
+        setLogUpdateUserName(newUser);
+        // console.log("loginAuth", lgUserName)
+
+        setLoggedIn(true);
+        history.replace(from);
+        //    history.replace(from || "/")
+      })
+      .catch((err) => {
+        console.log(err);
+        setUser({ ...user, signinError: err.message });
+      })
+  }
+
+  const fbSigninHandler = () => {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+      .then((res) => {
+        setLoggedIn(true);
+        history.replace(location);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  const googleSigninHandler = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+      .then((res) => {
+        setLoggedIn(true);
+        history.replace(location || "/");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  return (
+    <div className="log-bg">
+      <Header></Header>
+
+      <form className="form-group account-form" onSubmit={formHandler}>
+        <FormGroup>
+          {
+            isSignUp ? <h2>Login</h2>
+              : <h2>Create an account</h2>
+          }
+
+          {
+            !isSignUp && <>
+              <input onBlur={(event) => setUser({ ...user, fname: event.target.value })} type="text" placeholder="First Name" required />
+              <input onBlur={(event) => setUser({ ...user, lastname: event.target.value })} type="text" placeholder="Last Name" required />
+
+              <input onBlur={(event) => setUser({ ...user, lname: event.target.value })} type="text" placeholder="Your Full Name..." required />
+            </>
+          }
+
+          <input onBlur={(event) => setUser({ ...user, email: event.target.value })} type="email" placeholder="Email address" required />
+          <input onBlur={(event) => setUser({ ...user, password: event.target.value })} type="password" placeholder="Password" required />
+
+          {
+            !isSignUp &&
+            <input onBlur={(event) => setUser({ ...user, confirmationPassword: event.target.value })} type="password" placeholder="Confirm Password" required />
+          }
+
+          {
+            isSignUp &&
+            <div style={{
+              display: "flex",
+              justifyContent: "space-between",
+              fontSize: "13px",
+              fontWeight: "500",
+            }}>
+
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <input id="checkbox" type="Checkbox" />
+                <label style={{ marginBottom: "6px" }}>Remember me</label>
+              </div>
+
+              <p style={{ color: "orange", cursor: "pointer" }}>
+                Fogot Password
+              </p>
+            </div>
+          }
+
+          {
+            user.signupError ?
+              <p style={{ color: "red", fontSize: "13px" }}>
+                {user.signupError}
+              </p>
+              : ""
+          }
+          {
+            confirmationError ?
+              <p style={{ color: "red", fontSize: "13px" }}>
+                Doesn't match your password
+                            </p>
+              : ""
+          }
+
+
+          {
+
+            isSignUp ? <input name="signin" style={{ cursor: "pointer", backgroundColor: "orange" }} onClick={(event) => setSubmit(event.target.name)} type="submit" value="Sign in" />
+              : <input name="signup" style={{ cursor: "pointer", backgroundColor: "orange" }} onClick={(event) => setSubmit(event.target.name)} type="submit" value="Sign up" />
+
+          }
+
+        </FormGroup>
+
+        {
+          isSignUp ? <>
+            <span>Don't have an account? </span>
+            <span onClick={() => setIsSignUp(false)} style={{ color: "orange", cursor: "pointer" }}> Sign up </span>
+
+          </>
+            : <>
+              <span>Already have an account? </span>
+
+              <span onClick={() => setIsSignUp(true)} style={{ color: "orange", cursor: "pointer" }}>Login</span>
+
+            </>
         }
 
-      
-       submit === "signin" &&
-            console.log('call');
-        firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-            .then(res => {
+      </form>
 
-                const currentUser = firebase.auth().currentUser;
-                // setName(currentUser.displayName
-                setLoggedIn(true)
-                history.replace(from || "/")
-            })
-            .catch(err => {
-                console.log(err);
-                setUser({ ...user, signinError: err.message })
-            })
+      <div className="fb-google-form">
 
-    }
-
-    const fbSigninHandler = () => {
-        const provider = new firebase.auth.FacebookAuthProvider();
-        firebase.auth().signInWithPopup(provider)
-            .then(res => {
-                setLoggedIn(true)
-                history.replace(location)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
-
-    const googleSigninHandler = () => {
-        const provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider)
-            .then(res => {
-                setLoggedIn(true)
-                history.replace(location || '/')
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
-
-    return (
-        <div>
-            <Header></Header>
-
-            <form className="form-group account-form" onSubmit={formHandler}>
-                <FormGroup>
-
-                    {
-                        isSignUp ? <h2>Login</h2>
-                            : <h2>Create an account</h2>
-                    }
+        <p> Or</p>
 
 
-                    {
-                        !isSignUp && <>
-
-                            <input onBlur={(event) => setUser({ ...user, fname: event.target.value })} type="text" placeholder="First Name" required />
-
-                            <input onBlur={(event) => setUser({ ...user, lname: event.target.value })} type="text" placeholder="Last Name" required />
-                        </>
-                    }
-
-
-                    <input onBlur={(event) => setUser({ ...user, email: event.target.value })} type="email" placeholder="Email address" required />
-                    <input onBlur={(event) => setUser({ ...user, password: event.target.value })} type="password" placeholder="Password" required />
-
-
-                    {
-
-                        !isSignUp && <input onBlur={(event) => setUser({ ...user, confirmationPassword: event.target.value })}
-                            type="password" placeholder="Confirm Password" required />
-
-                    }
-                    {
-                        isSignUp &&
-                        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", fontWeight: "500" }}>
-                            <div style={{ display: "flex", alignItems: "center" }}>
-                                <input id="checkbox" type="Checkbox" />
-                                <label style={{ marginBottom: "6px" }}>
-                                    Remember me
-                                    </label>
-                            </div>
-                            <p style={{ color: "orange", cursor: "pointer" }}>Fogot Password</p>
-                        </div>
-                    }
-                    {
-                        user.signupError ?
-                            <p style={{ color: "red", fontSize: "13px" }}>
-                                {user.signupError}
-                            </p>
-                            : ""
-                    }
-                    {
-                        confirmationError ?
-                            <p style={{ color: "red", fontSize: "13px" }}>
-                                Doesn't match your password
-                            </p>
-                            : ""
-                    }
-                    {
-
-                        isSignUp ? <input name="signin" style={{ cursor: "pointer", backgroundColor: "orange" }} onClick={(event) => setSubmit(event.target.name)} type="submit" value="Sign in" />
-                            : <input name="signup" style={{ cursor: "pointer", backgroundColor: "orange" }} onClick={(event) => setSubmit(event.target.name)} type="submit" value="Sign up" />
-                    }
-                </FormGroup>
-
-
-                {
-                    isSignUp ? <>
-                        <span>Don't have an account? </span>
-                        <span onClick={() => setIsSignUp(false)} style={{ color: "orange", cursor: "pointer" }}>Sign up</span>
-                    </>
-
-                        : <>
-                            <span>Already have an account? </span>
-                            <span onClick={() => setIsSignUp(true)} style={{ color: "orange", cursor: "pointer" }}>Login</span>
-                        </>
-
-
-                }
-
-            </form>
-
-
-            <div className="fb-google-form">
-                <p>  Or</p>
-                <div onClick={fbSigninHandler} style={{ cursor: "pointer" }} className="facebook">
-                    <img style={{ width: "35px", height: "35px", marginRight: "25px" }} src={facebookLogo} alt="" />
-                    <p>Continue with Facebook</p>
-                </div>
-                <br />
-
-                <div onClick={googleSigninHandler} style={{ cursor: "pointer" }} className="google">
-                    <img style={{ width: "30px", height: "30px", marginRight: "25px" }} src={googleLogo} alt="" />
-                    <p>Continue with Google</p>
-                </div>
-            </div>
+        <div onClick={fbSigninHandler} style={{ cursor: "pointer" }} className="facebook">
+          <img style={{ width: "35px", height: "35px", marginRight: "25px" }} src={facebookLogo} alt="" />
+          <p>Continue with Facebook</p>
         </div>
-    );
+
+        <br />
+
+        <div
+          onClick={googleSigninHandler} style={{ cursor: "pointer" }} className="google">
+          <img style={{ width: "30px", height: "30px", marginRight: "25px" }} src={googleLogo} alt="" />
+          <p>Continue with Google</p>
+        </div>
+
+      </div>
+    </div>
+  );
 };
 
 export default LoginAuth;

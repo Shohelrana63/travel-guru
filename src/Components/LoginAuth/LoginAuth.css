@@ -1,39 +1,39 @@
-.account-form{
-    border: 1px solid grey;
-    border-radius: 5px;
-    width: 500px;
-    margin: auto;
-    margin-top: 30px;
-    padding: 10px 20px;
-    text-align: center;
-    
+.log-bg {
+  background-color: rgba(211, 211, 211, 1);
 }
-.account-form input{
-    padding-left: 10px;
-    margin: 5px;
+.account-form {
+  border: 1px solid grey;
+  border-radius: 5px;
+  width: 500px;
+  margin: auto;
+  margin-top: 30px;
+  padding: 10px 20px;
+  text-align: center;
 }
-.fb-google-form p{
-    text-align: center;
+.account-form input {
+  padding-left: 10px;
+  margin: 5px;
 }
-.fb-google-form{
-    margin: auto;
-    width: 300px;
-    
+.fb-google-form p {
+  text-align: center;
 }
-.facebook{
- display: flex;
- border: 1px solid grey;
- border-radius: 25px;
- padding: 1px 15px;
- margin-right:5px;
- align-items: center;
- 
+.fb-google-form {
+  margin: auto;
+  width: 300px;
 }
-.google{
-    display: flex;
-    border: 1px solid grey;
-    border-radius: 25px;
-    padding: 1px 15px;
-    margin-right:5px;
-    align-items: center;
+.facebook {
+  display: flex;
+  border: 1px solid grey;
+  border-radius: 25px;
+  padding: 1px 15px;
+  margin-right: 5px;
+  align-items: center;
+}
+.google {
+  display: flex;
+  border: 1px solid grey;
+  border-radius: 25px;
+  padding: 1px 15px;
+  margin-right: 5px;
+  align-items: center;
 }

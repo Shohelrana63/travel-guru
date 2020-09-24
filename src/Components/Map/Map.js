@@ -12,26 +12,26 @@ class Map extends Component {
     zoom: 11
   };
 
- render () {
+  render() {
     return (
-         // Important! Always set the container height explicitly
-    //   <div style={{ height: '100vh', width: '100%',margin:"auto", marginTop:"40px" }}>
-           <div style={{ height: '90vh', width: '90%', marginTop:"30px" }}>
-      <GoogleMapReact
-        // bootstrapURLKeys={{ key: /* YOUR KEY HERE */ }}
-        defaultCenter={this.props.center}
-        defaultZoom={this.props.zoom}
-      >
-        <AnyReactComponent
-          lat={59.955413}
-          lng={30.337844}
-        
-          text="My Marker"
-        />
-      </GoogleMapReact>
-    </div>
+      // Important! Always set the container height explicitly
+
+      <div style={{ height: '90vh', width: '90%', marginTop: "30px" }}>
+        <GoogleMapReact
+          // bootstrapURLKeys={{ key: /* YOUR KEY HERE */ }}
+          defaultCenter={this.props.center}
+          defaultZoom={this.props.zoom}
+        >
+          <AnyReactComponent
+            lat={59.955413}
+            lng={30.337844}
+
+            text="My Marker"
+          />
+        </GoogleMapReact>
+      </div>
     );
- }
+  }
 }
 
 export default Map;
