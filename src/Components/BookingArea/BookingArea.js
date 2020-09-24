@@ -46,7 +46,7 @@ const BookingArea = (props) => {
               <input type="text" required />
 
               <label>Destination</label>
-              <input type="text" required />
+              <input type="text" value={showPlaceArea.title} required />
 
               <div style={{ display: "flex" }} className="datePicker-section">
                 <div style={{ marginRight: "5px" }}>

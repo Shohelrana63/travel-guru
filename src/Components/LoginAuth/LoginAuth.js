@@ -15,12 +15,12 @@ firebase.initializeApp(firebaseConfig);
 
 const LoginAuth = () => {
   const [placeArea, setPlaceArea, loggedIn, setLoggedIn, logUpdateUserName, setLogUpdateUserName] = useContext(UserContext);
-  console.log("setLoggedIn", logUpdateUserName);
+
 
   const [submit, setSubmit] = useState("");
 
   const [user, setUser] = useState({});
-  // console.log("username update", user.lname)
+
   const [isSignUp, setIsSignUp] = useState(false);
   const [confirmationError, setConfirmationError] = useState(false);
 
@@ -40,7 +40,7 @@ const LoginAuth = () => {
             console.log(res, "asfsadf");
             setConfirmationError(false);
             setUser({ ...user, signupError: "" });
-            // const newUser = res.user.displayName;
+
             setLogUpdateUserName(user.lname);
             updateName(user.lname);
             setLoggedIn(true);
@@ -65,7 +65,7 @@ const LoginAuth = () => {
           console.log("name update sucess");
         })
         .catch(function (error) {
-          // An error happened.
+
         });
     };
 
@@ -75,12 +75,12 @@ const LoginAuth = () => {
       .then((res) => {
         const currentUser = firebase.auth().currentUser;
         // setName(currentUser.displayName
-        //console.log(res, 'signin);
+
         const newUser = res.user.displayName;
-        // const userName = [...lgUserName, newUser]
+
 
         setLogUpdateUserName(newUser);
-        // console.log("loginAuth", lgUserName)
+
 
         setLoggedIn(true);
         history.replace(from);
