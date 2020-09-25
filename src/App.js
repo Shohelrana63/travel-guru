@@ -27,7 +27,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [logUpdateUserName, setLogUpdateUserName] = useState();
 
-  console.log("app js theke", logUpdateUserName);
+  
 
   return (
     <UserContext.Provider value={[placeArea, setPlaceArea, loggedIn, setLoggedIn, logUpdateUserName, setLogUpdateUserName]}>

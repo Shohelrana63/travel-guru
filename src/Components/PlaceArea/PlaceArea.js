@@ -14,10 +14,11 @@ const PlaceArea = (props) => {
     backgroundPosition: "right top",
     backgroundRepeat: "no-repeat",
     backgroundOrigin: "border-box",
-    width: "100%",
+    width: "92%",
     border: "3px solid yellow",
     borderRadius: "15px",
-    margin: "5px"
+    margin: "5px",
+
   };
 
   return (

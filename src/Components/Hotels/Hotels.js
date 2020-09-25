@@ -12,8 +12,11 @@ import { UserContext } from "../../App";
 const Hotels = () => {
   const [showPlaceArea] = useContext(UserContext);
   return (
-    <div className="hotel-bg">
-      <Header></Header>
+    <div >
+      <div className="hotel-header-background">
+        <Header></Header>
+      </div>
+
       <hr />
 
       <Grid container item xs={12} justify="space-between">

@@ -41,8 +41,8 @@ const LoginAuth = () => {
             setConfirmationError(false);
             setUser({ ...user, signupError: "" });
 
-            setLogUpdateUserName(user.lname);
-            updateName(user.lname);
+            setLogUpdateUserName(user.fullname);
+            updateName(user.fullname);
             setLoggedIn(true);
             history.replace(from);
           })
@@ -73,15 +73,8 @@ const LoginAuth = () => {
       console.log("call");
     firebase.auth().signInWithEmailAndPassword(user.email, user.password)
       .then((res) => {
-        const currentUser = firebase.auth().currentUser;
-        // setName(currentUser.displayName
-
         const newUser = res.user.displayName;
-
-
         setLogUpdateUserName(newUser);
-
-
         setLoggedIn(true);
         history.replace(from);
         //    history.replace(from || "/")
@@ -96,8 +89,10 @@ const LoginAuth = () => {
     const provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider)
       .then((res) => {
+        const newUser = res.user.displayName;
+        setLogUpdateUserName(newUser);
         setLoggedIn(true);
-        history.replace(location);
+        history.replace(from);
       })
       .catch((err) => {
         console.log(err);
@@ -108,8 +103,10 @@ const LoginAuth = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
       .then((res) => {
+        const newUser = res.user.displayName;
+        setLogUpdateUserName(newUser);
         setLoggedIn(true);
-        history.replace(location || "/");
+        history.replace(from);
       })
       .catch((err) => {
         console.log(err);
@@ -117,8 +114,11 @@ const LoginAuth = () => {
   }
 
   return (
-    <div className="log-bg">
-      <Header></Header>
+    <div >
+      <div className="logAuth-header-background">
+        <Header></Header>
+      </div>
+
 
       <form className="form-group account-form" onSubmit={formHandler}>
         <FormGroup>
@@ -132,7 +132,7 @@ const LoginAuth = () => {
               <input onBlur={(event) => setUser({ ...user, fname: event.target.value })} type="text" placeholder="First Name" required />
               <input onBlur={(event) => setUser({ ...user, lastname: event.target.value })} type="text" placeholder="Last Name" required />
 
-              <input onBlur={(event) => setUser({ ...user, lname: event.target.value })} type="text" placeholder="Your Full Name..." required />
+              <input onBlur={(event) => setUser({ ...user, fullname: event.target.value })} type="text" placeholder="Your Full Name..." required />
             </>
           }
 
