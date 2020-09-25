@@ -19,7 +19,7 @@ const BookingArea = (props) => {
 
   const formController = (e) => {
     e.preventDefault();
-    history.push("/booking");
+    history.push("/hotels");
   };
 
   return (

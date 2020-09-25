@@ -37,31 +37,31 @@ function App() {
             <Home></Home>
           </Route>
 
-          <Route path="/bookingarea">
+          <Route exact path="/bookingarea">
             <BookingArea></BookingArea>
           </Route>
 
-          <Route path="/login">
+          <Route exact path="/login">
             <LoginAuth></LoginAuth>
           </Route>
 
-          <PrivateRoute path="/booking">
+          <PrivateRoute exact path="/hotels">
             <Hotels></Hotels>
           </PrivateRoute>
 
-          <Route path="/news">
+          <Route exact path="/news">
             <News></News>
           </Route>
 
-          <Route path="/blog">
+          <Route exact path="/blog">
             <Blog></Blog>
           </Route>
 
-          <Route path="/contact">
+          <Route exact path="/contact">
             <Contact></Contact>
           </Route>
 
-          <Route path="/destination">
+          <Route exact path="/destination">
             <Destination></Destination>
           </Route>
 
