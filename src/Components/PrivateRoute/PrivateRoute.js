@@ -2,27 +2,27 @@ import React, { useContext } from 'react';
 import { Redirect, Route, useLocation } from 'react-router-dom';
 import { UserContext } from '../../App';
 
-const PrivateRoute = ({children, ...rest}) => {
+const PrivateRoute = ({ children, ...rest }) => {
 
 
-    const[placeArea, setPlaceArea,loggedIn, setLoggedIn] = useContext(UserContext);
+    const [placeArea, setPlaceArea, loggedIn, setLoggedIn] = useContext(UserContext);
     return (
         <Route
-           {...rest}
-           render={({ location })=>
+            {...rest}
+            render={({ location }) =>
                 loggedIn ? (
                     children
-                    ) : (
-                         <Redirect 
-                         to= { {
-                                  pathname:"/LoginAuth",
-                                 state:{from:location}
-                              } }
-                          />
-                     )
-                }
-          />
-        
+                ) : (
+                        <Redirect
+                            to={{
+                                pathname: "/login",
+                                state: { from: location }
+                            }}
+                        />
+                    )
+            }
+        />
+
     );
 };
 

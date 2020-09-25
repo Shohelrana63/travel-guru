@@ -35,7 +35,7 @@ const Header = (props) => {
         loggedIn ?
           <h4> <span style={{ color: "orange" }}>Welcome, {logUpdateUserName} </span></h4>
           : <>
-            <Link style={{ textDecoration: "none", color: "white" }} to="/LoginAuth">
+            <Link style={{ textDecoration: "none", color: "white" }} to="/login">
               <Button size="small" style={{ background: "orange", color: "white" }}>
                 Login
              </Button>

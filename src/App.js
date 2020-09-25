@@ -41,7 +41,7 @@ function App() {
             <BookingArea></BookingArea>
           </Route>
 
-          <Route path="/LoginAuth">
+          <Route path="/login">
             <LoginAuth></LoginAuth>
           </Route>
 
