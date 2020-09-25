@@ -61,7 +61,7 @@ function App() {
             <Contact></Contact>
           </Route>
 
-          <Route path="/booking/destination">
+          <Route path="/destination">
             <Destination></Destination>
           </Route>
 

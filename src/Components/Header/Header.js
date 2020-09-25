@@ -27,7 +27,7 @@ const Header = (props) => {
       <input className="input-style" style={{ height: "30px", width: "300px", borderRadius: "3px" }} type="text" placeholder="search your destination" />
 
       <Link to="/news">News</Link>
-      <Link to="/booking/destination">Destination</Link>
+      <Link to="/destination">Destination</Link>
       <Link to="/blog">Blog</Link>
       <Link to="/contact"> Contact</Link>
 
