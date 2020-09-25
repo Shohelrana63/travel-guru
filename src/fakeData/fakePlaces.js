@@ -9,14 +9,14 @@ const places = [
     {
         id: 1,
         title: "Sreemangal",
-        description: "Sreemangal is a city, fishing port, tourism centre and district headquarters in southeastern Bangladesh. it is famous mostly for its long natural sandy beach, and it ....",
+        description: "Sreemangal is the tea capital of Bangladesh. This hilly area, with tea estates,lemon orchards, pineapple, is one of the most picturesque and enjoyable parts of the country.",
         img: "https://i.ibb.co/S7mwg40/Sreemongol.png"
 
     },
     {
         id: 1,
         title: "Sundorbon",
-        description: "Sundorbon is a city, fishing port, tourism centre and district headquarters in southeastern Bangladesh. it is famous mostly for its long natural sandy beach, and it ....",
+        description: "Sundorbon is the largest single block of tidal, halophytic mangrove forests in the world. Apart from being a unique largest mangrove eco-system of the world, the Sundarbans has the world's largest deltaic mangrove forests and is also home to one of India's most iconic wildlife species - the Royal Bengal Tiger.",
         img: "https://i.ibb.co/JsWB10D/sundorbon.png"
 
     },

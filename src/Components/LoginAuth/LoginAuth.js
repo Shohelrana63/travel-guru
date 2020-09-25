@@ -16,11 +16,8 @@ firebase.initializeApp(firebaseConfig);
 const LoginAuth = () => {
   const [placeArea, setPlaceArea, loggedIn, setLoggedIn, logUpdateUserName, setLogUpdateUserName] = useContext(UserContext);
 
-
   const [submit, setSubmit] = useState("");
-
   const [user, setUser] = useState({});
-
   const [isSignUp, setIsSignUp] = useState(false);
   const [confirmationError, setConfirmationError] = useState(false);
 
@@ -29,15 +26,15 @@ const LoginAuth = () => {
   const location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
 
+
+  // Form-Handler
+
   const formHandler = (e) => {
     e.preventDefault();
-    console.log(submit, "submit");
     if (submit === "signup") {
-      console.log("call");
       user.password === user.confirmationPassword ?
         firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
           .then((res) => {
-            console.log(res, "asfsadf");
             setConfirmationError(false);
             setUser({ ...user, signupError: "" });
 
@@ -54,10 +51,10 @@ const LoginAuth = () => {
         : setConfirmationError(true);
     }
 
+
     //update user profile
     const updateName = (name) => {
-      var user = firebase.auth().currentUser;
-
+      const user = firebase.auth().currentUser;
       user.updateProfile({
         displayName: name,
       })
@@ -65,9 +62,11 @@ const LoginAuth = () => {
           console.log("name update sucess");
         })
         .catch(function (error) {
-
+          console.log(error);
         });
     };
+
+    //sign in
 
     submit === "signin" &&
       console.log("call");
@@ -77,13 +76,15 @@ const LoginAuth = () => {
         setLogUpdateUserName(newUser);
         setLoggedIn(true);
         history.replace(from);
-        //    history.replace(from || "/")
+
       })
       .catch((err) => {
         console.log(err);
         setUser({ ...user, signinError: err.message });
       })
   }
+
+  //Facebook-Handler
 
   const fbSigninHandler = () => {
     const provider = new firebase.auth.FacebookAuthProvider();
@@ -99,6 +100,8 @@ const LoginAuth = () => {
       })
   }
 
+  //Google-Handler
+
   const googleSigninHandler = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
@@ -112,6 +115,7 @@ const LoginAuth = () => {
         console.log(err);
       })
   }
+
 
   return (
     <div >
@@ -207,7 +211,7 @@ const LoginAuth = () => {
 
       <div className="fb-google-form">
 
-        <p> Or</p>
+        <p>----------Or---------- </p>
 
 
         <div onClick={fbSigninHandler} style={{ cursor: "pointer" }} className="facebook">

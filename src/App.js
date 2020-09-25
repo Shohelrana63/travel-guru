@@ -27,7 +27,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [logUpdateUserName, setLogUpdateUserName] = useState();
 
-  
+
 
   return (
     <UserContext.Provider value={[placeArea, setPlaceArea, loggedIn, setLoggedIn, logUpdateUserName, setLogUpdateUserName]}>
@@ -61,7 +61,7 @@ function App() {
             <Contact></Contact>
           </Route>
 
-          <Route path="/destination">
+          <Route path="/booking/destination">
             <Destination></Destination>
           </Route>
 
