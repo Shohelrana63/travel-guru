@@ -27,7 +27,7 @@ const LoginAuth = () => {
   let { from } = location.state || { from: { pathname: "/" } };
 
 
-  // Form-Handler
+
 
   const formHandler = (e) => {
     e.preventDefault();
@@ -52,7 +52,7 @@ const LoginAuth = () => {
     }
 
 
-    //update user profile
+
     const updateName = (name) => {
       const user = firebase.auth().currentUser;
       user.updateProfile({
@@ -66,7 +66,7 @@ const LoginAuth = () => {
         });
     };
 
-    //sign in
+
 
     submit === "signin" &&
       console.log("call");
@@ -84,7 +84,7 @@ const LoginAuth = () => {
       })
   }
 
-  //Facebook-Handler
+
 
   const fbSigninHandler = () => {
     const provider = new firebase.auth.FacebookAuthProvider();
@@ -100,7 +100,7 @@ const LoginAuth = () => {
       })
   }
 
-  //Google-Handler
+
 
   const googleSigninHandler = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
