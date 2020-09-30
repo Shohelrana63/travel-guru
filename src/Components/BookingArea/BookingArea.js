@@ -12,8 +12,9 @@ import "./BookingArea.css";
 
 const BookingArea = (props) => {
   const history = useHistory();
+  const [placeArea] = useContext(UserContext);
 
-  const [showPlaceArea] = useContext(UserContext);
+  // const [showPlaceArea] = useContext(UserContext);
   const [from, setFrom] = useState(null);
   const [to, setTo] = useState(null);
 
@@ -33,8 +34,8 @@ const BookingArea = (props) => {
           color: "white",
         }} >
 
-          <h1 className="titleStyle">{showPlaceArea.title}</h1>
-          <p>{showPlaceArea.description}</p>
+          <h1 className="titleStyle">{placeArea.title}</h1>
+          <p>{placeArea.description}</p>
 
         </Grid>
 
@@ -46,7 +47,7 @@ const BookingArea = (props) => {
               <input type="text" required />
 
               <label>Destination</label>
-              <input type="text" value={showPlaceArea.title} required />
+              <input type="text" value={placeArea.title} required />
 
               <div style={{ display: "flex" }} className="datePicker-section">
                 <div style={{ marginRight: "5px" }}>

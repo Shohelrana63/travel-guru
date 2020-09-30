@@ -10,7 +10,8 @@ import { useContext } from "react";
 import { UserContext } from "../../App";
 
 const Hotels = () => {
-  const [showPlaceArea] = useContext(UserContext);
+  const [placeArea] = useContext(UserContext);
+
   return (
     <div >
       <div className="hotel-header-background">
@@ -23,7 +24,7 @@ const Hotels = () => {
         <Grid item xs={12} md={7}>
           <div style={{ marginLeft: "45px" }}>
             <b style={{ color: "grey" }}>252 Stays Sep 17-20</b>
-            <h3 style={{ margin: 0 }}>Stay in {showPlaceArea.title}</h3>
+            <h3 style={{ margin: 0 }}>Stay in {placeArea.title}</h3>
           </div>
           {hotelsInfo.map((hotel) => (
             <HotelDetails hotel={hotel}></HotelDetails>
